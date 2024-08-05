@@ -2,7 +2,7 @@ package telran.multithreading;
 
 public class CounterUpdater extends Thread{
 	private static long counter;
-	private static final Object mutex = new Object();
+
 	private int nRuns;
 	
 	public CounterUpdater(int nRuns) {
@@ -17,10 +17,8 @@ public class CounterUpdater extends Thread{
 		}
 	}
 
-	private void counterIncrement() {
-		synchronized (mutex) {
+	synchronized static private void counterIncrement() {
 			counter++;
-		}
 	}
 	
 	public static long getCounter() {
